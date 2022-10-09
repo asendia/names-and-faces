@@ -1,0 +1,82 @@
+[
+	{
+		"profile": {
+			"title": "Countess of Lovelace",
+			"real_name": "Ada Lovelace",
+			"display_name": "Ada",
+			"image_original": "./photos/ada-lovelace.webp"
+		}
+	},
+	{
+		"profile": {
+			"title": "Assistant Examiner III",
+			"real_name": "Albert Einstein",
+			"display_name": "Einstein",
+			"image_original": "./photos/albert-einstein.webp"
+		}
+	},
+	{
+		"profile": {
+			"title": "Head of Agriculture",
+			"real_name": "George Washington Carver",
+			"display_name": "Carver",
+			"image_original": "./photos/george-washington-carver.webp"
+		}
+	},
+	{
+		"profile": {
+			"title": "Assembly is EZ",
+			"real_name": "John Von Neumann",
+			"display_name": "Von Neumann",
+			"image_original": "./photos/john-von-neumann.webp"
+		}
+	},
+	{
+		"profile": {
+			"title": "Professor of General Physics",
+			"real_name": "Marie Curie",
+			"display_name": "Curie",
+			"image_original": "./photos/marie-curie.webp"
+		}
+	},
+	{
+		"profile": {
+			"title": "Distinguished Engineer",
+			"real_name": "Nikola Tesla",
+			"display_name": "Tesla",
+			"image_original": "./photos/nikola-tesla.webp"
+		}
+	},
+	{
+		"profile": {
+			"title": "Senior Scientist",
+			"real_name": "Rosalind Franklin",
+			"display_name": "Franklin",
+			"image_original": "./photos/rosalind-franklin.webp"
+		}
+	},
+	{
+		"profile": {
+			"title": "Fellow of Trinity College",
+			"real_name": "Srinivasa Ramanujan",
+			"display_name": "Ramanujan",
+			"image_original": "./photos/srinivasa-ramanujan.webp"
+		}
+	},
+	{
+		"profile": {
+			"title": "Professor of Mathematics",
+			"real_name": "Stephen Hawking",
+			"display_name": "Hawking",
+			"image_original": "./photos/stephen-hawking.webp"
+		}
+	},
+	{
+		"profile": {
+			"title": "研究员 (Professor)",
+			"real_name": "屠呦呦",
+			"display_name": "Tu Youyou",
+			"image_original": "./photos/tu-youyou.webp"
+		}
+	}
+]
