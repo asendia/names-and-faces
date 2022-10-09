@@ -36,7 +36,9 @@
 </div>
 <div class="flex flex-wrap">
 	{#each data as u}
-		<div class="w-1/2 md:w-1/5 xl:w-[14.285714%] 2xl:w-[10%] p-2 flex flex-col items-center">
+		<div
+			class="w-1/2 sm:w-1/3 md:w-1/5 xl:w-[14.285714%] 2xl:w-[10%] p-2 flex flex-col items-center"
+		>
 			<Photo src={u.profile.image_original} alt={u.profile.real_name} />
 			<div class="text-center mt-2">
 				{u.profile.real_name}
