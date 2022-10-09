@@ -34,6 +34,7 @@
 			biasedData.splice(id, 1);
 			biasedData = biasedData;
 		}
+		window.scrollTo({ top: 0, behavior: 'smooth' });
 	}
 </script>
 
@@ -54,16 +55,24 @@
 				<Photo src={userProfile.image_original} alt={userProfile.real_name} />
 			</div>
 		</div>
-		<div class="text-center mt-2">
+		<div
+			class={`text-center mt-2 ${
+				correct ? 'text-green-700' : correct === false ? 'text-red-500' : ''
+			}`}
+		>
 			{userProfile.real_name} ({userProfile.display_name})
 		</div>
-		<div class="text-center font-light text-sm mb-2">
+		<div
+			class={`text-center font-light text-sm mb-2 ${
+				correct ? 'text-green-700' : correct === false ? 'text-red-500' : ''
+			}`}
+		>
 			({userProfile.title})
 		</div>
 	{/if}
 </div>
 
-<div class="flex flex-col items-center justify-center h-[60px]">
+<div class={`flex flex-col items-center justify-center h-[50px]`}>
 	{#if correct !== undefined}
 		<Button on:click={startGame}>Next</Button>
 	{/if}

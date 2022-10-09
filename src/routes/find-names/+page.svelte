@@ -45,7 +45,13 @@
 	<meta name="description" content="Find names based on photos" />
 </svelte:head>
 
-<div class="flex flex-col items-center">
+{#if !started}
+	<div class="flex justify-center">
+		<Button on:click={startGame}>Start</Button>
+	</div>
+{/if}
+
+<div class="flex flex-col items-center mb-2">
 	{#if started}
 		<Photo src={userProfile.image_original} alt={userProfile.real_name} />
 		<div class={correct === undefined ? 'opacity-0' : ''}>
@@ -59,16 +65,8 @@
 	{/if}
 </div>
 
-<div class="flex flex-col items-center justify-center h-[60px]">
-	{#if !started}
-		<Button on:click={startGame}>Start</Button>
-	{:else if correct !== undefined}
-		<Button on:click={startGame}>Next</Button>
-	{/if}
-</div>
-
 {#if started}
-	<form>
+	<div class="max-w-lg mx-auto">
 		<label for="search-by-name" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label
 		>
 		<div class="relative">
@@ -88,22 +86,38 @@
 					/></svg
 				>
 			</div>
-			<input
-				value={filter}
-				type="text"
-				id="search-by-name"
-				class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
-				placeholder="Search Name..."
-				on:keyup={(e) => {
-					filter = e.currentTarget.value;
-					filtered = data.filter((u) => {
-						return u.profile.real_name.toLowerCase().includes(filter);
-					});
-				}}
-			/>
+			<div class="flex">
+				<input
+					value={filter}
+					autocomplete="off"
+					type="text"
+					id="search-by-name"
+					class="block px-4 py-2 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+					placeholder="Search Name..."
+					on:keyup={(e) => {
+						if (e.key === 'Enter') {
+							if (correct !== undefined) {
+								startGame();
+								return;
+							}
+							if (filtered.length !== 1) return;
+							guessName(filtered[0].profile.real_name);
+							return;
+						}
+						filter = e.currentTarget.value.toLowerCase();
+						filtered = data.filter((u) => {
+							return (
+								u.profile.real_name.toLowerCase().includes(filter) ||
+								u.profile.display_name.toLowerCase().includes(filter)
+							);
+						});
+					}}
+				/>
+				<div class="w-2" />
+				<Button on:click={startGame}>Next</Button>
+			</div>
 		</div>
-	</form>
-
+	</div>
 	<div class="flex flex-wrap justify-around max-w-5xl mx-auto mt-3">
 		{#each filtered as u}
 			<div class="m-2">
