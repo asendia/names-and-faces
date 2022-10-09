@@ -46,8 +46,8 @@
 </svelte:head>
 
 {#if !started}
-	<div class="flex justify-center">
-		<Button on:click={startGame}>Start</Button>
+	<div class="flex items-center justify-center h-[80vh]">
+		<Button on:click={startGame}>Start Find Names</Button>
 	</div>
 {/if}
 
@@ -59,7 +59,7 @@
 				{userProfile.real_name}{userProfile.display_name ? ` (${userProfile.display_name})` : ''}
 			</div>
 			<div class={`text-center font-light text-sm ${correct ? 'text-green-700' : 'text-red-500'}`}>
-				({userProfile.title})
+				{userProfile.title}
 			</div>
 		</div>
 	{/if}

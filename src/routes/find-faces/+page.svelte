@@ -44,10 +44,11 @@
 </svelte:head>
 
 {#if !started}
-	<div class="flex items-center justify-center h-[60px]">
-		<Button on:click={startGame}>Start</Button>
+	<div class="flex items-center justify-center h-[80vh]">
+		<Button on:click={startGame}>Start Find Faces</Button>
 	</div>
 {/if}
+
 <div class="flex flex-col items-center">
 	{#if started}
 		<div class="bg-gray-200 rounded-md">
@@ -60,14 +61,14 @@
 				correct ? 'text-green-700' : correct === false ? 'text-red-500' : ''
 			}`}
 		>
-			{userProfile.real_name} ({userProfile.display_name})
+			{userProfile.real_name}{userProfile.display_name ? ` (${userProfile.display_name})` : ''}
 		</div>
 		<div
 			class={`text-center font-light text-sm mb-2 ${
-				correct ? 'text-green-700' : correct === false ? 'text-red-500' : ''
+				correct ? 'text-green-700' : correct === false ? 'text-red-500' : 'text-gray-500'
 			}`}
 		>
-			({userProfile.title})
+			{userProfile.title}
 		</div>
 	{/if}
 </div>
@@ -81,7 +82,7 @@
 {#if started}
 	<div class="flex flex-wrap">
 		{#each data as u}
-			<div class="w-1/2 md:w-1/5 xl:w-[14.285714%] 2xl:w-[10%] p-2 flex justify-center">
+			<div class="w-1/2 sm:w-1/3 md:w-1/5 xl:w-[14.285714%] 2xl:w-[10%] p-2 flex justify-center">
 				<button on:click={() => guessName(u.profile.real_name)}
 					><Photo src={u.profile.image_original} alt={u.profile.real_name} /></button
 				>

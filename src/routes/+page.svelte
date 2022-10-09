@@ -44,7 +44,7 @@
 				{u.profile.real_name}
 			</div>
 			{#if u.profile.title}
-				<div class="text-center font-light text-sm mt-1">({u.profile.title})</div>
+				<div class="text-center font-light text-sm mt-1 text-gray-500">{u.profile.title}</div>
 			{/if}
 		</div>
 	{/each}
