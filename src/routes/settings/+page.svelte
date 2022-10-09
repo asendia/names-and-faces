@@ -28,7 +28,7 @@
 <textarea
 	id="message"
 	rows="20"
-	class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
+	class="block p-2.5 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
 	placeholder="Copy json profiles from slack"
 	on:change={(e) => (dataStr = e.currentTarget.value)}>{dataStr}</textarea
 >
@@ -42,9 +42,9 @@
 >
 <Button on:click={handleSave}>Save</Button>
 
-<p class="mt-4">Here you can use your own data from your Slack. How:</p>
+<p class="mt-4">Here you can use your own data from your Slack organization(s). How:</p>
 <ol class="pl-5 my-2 space-y-1 list-decimal list-inside">
-	<li>Open slack in Google Chrome</li>
+	<li>Open Slack in Google Chrome</li>
 	<li>Right click > Inspect</li>
 	<li>Click Network</li>
 	<li>Type "users/list" on the Filter</li>
