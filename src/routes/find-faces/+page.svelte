@@ -47,17 +47,19 @@
 		<Button on:click={startGame}>Start</Button>
 	</div>
 {/if}
-<div class="flex flex-col items-center h-[340px]">
+<div class="flex flex-col items-center">
 	{#if started}
-		<div class="text-center">
+		<div class="bg-gray-200 rounded-md">
+			<div class={correct === undefined ? 'opacity-0' : ''}>
+				<Photo src={userProfile.image_original} alt={userProfile.real_name} />
+			</div>
+		</div>
+		<div class="text-center mt-2">
 			{userProfile.real_name} ({userProfile.display_name})
 		</div>
 		<div class="text-center font-light text-sm mb-2">
 			({userProfile.title})
 		</div>
-		{#if correct !== undefined}
-			<Photo src={userProfile.image_original} alt={userProfile.real_name} />
-		{/if}
 	{/if}
 </div>
 

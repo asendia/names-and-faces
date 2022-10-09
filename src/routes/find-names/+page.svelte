@@ -50,7 +50,7 @@
 		<Photo src={userProfile.image_original} alt={userProfile.real_name} />
 		<div class={correct === undefined ? 'opacity-0' : ''}>
 			<div class={`mt-2 text-center ${correct ? 'text-green-700' : 'text-red-500'}`}>
-				{userProfile.real_name}
+				{userProfile.real_name} ({userProfile.display_name})
 			</div>
 			<div class={`text-center font-light text-sm ${correct ? 'text-green-700' : 'text-red-500'}`}>
 				({userProfile.title})
@@ -69,7 +69,7 @@
 
 {#if started}
 	<form>
-		<label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label
+		<label for="search-by-name" class="mb-2 text-sm font-medium text-gray-900 sr-only">Search</label
 		>
 		<div class="relative">
 			<div class="flex absolute inset-y-0 left-0 items-center pl-3 pointer-events-none">
@@ -90,13 +90,12 @@
 			</div>
 			<input
 				value={filter}
-				type="search"
-				id="default-search"
+				type="text"
+				id="search-by-name"
 				class="block p-4 pl-10 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500"
 				placeholder="Search Name..."
 				on:keyup={(e) => {
 					filter = e.currentTarget.value;
-					console.log(filter);
 					filtered = data.filter((u) => {
 						return u.profile.real_name.toLowerCase().includes(filter);
 					});
@@ -105,7 +104,7 @@
 		</div>
 	</form>
 
-	<div class="flex flex-wrap justify-around max-w-5xl mx-auto">
+	<div class="flex flex-wrap justify-around max-w-5xl mx-auto mt-3">
 		{#each filtered as u}
 			<div class="m-2">
 				<Button on:click={() => guessName(u.profile.real_name)} type="secondary"
