@@ -56,7 +56,7 @@
 		<Photo src={userProfile.image_original} alt={userProfile.real_name} />
 		<div class={correct === undefined ? 'opacity-0' : ''}>
 			<div class={`mt-2 text-center ${correct ? 'text-green-700' : 'text-red-500'}`}>
-				{userProfile.real_name} ({userProfile.display_name})
+				{userProfile.real_name}{userProfile.display_name ? ` (${userProfile.display_name})` : ''}
 			</div>
 			<div class={`text-center font-light text-sm ${correct ? 'text-green-700' : 'text-red-500'}`}>
 				({userProfile.title})
@@ -122,7 +122,9 @@
 		{#each filtered as u}
 			<div class="m-2">
 				<Button on:click={() => guessName(u.profile.real_name)} type="secondary"
-					>{u.profile.real_name} ({u.profile.display_name})</Button
+					>{u.profile.real_name}{u.profile.display_name
+						? ` (${u.profile.display_name})`
+						: ''}</Button
 				>
 			</div>
 		{/each}

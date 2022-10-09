@@ -81,7 +81,7 @@
 {#if started}
 	<div class="flex flex-wrap">
 		{#each data as u}
-			<div class="w-1/2 md:w-1/5 xl:w-[10%] p-2 flex justify-center">
+			<div class="w-1/2 md:w-1/5 xl:w-[14.285714%] 2xl:w-[10%] p-2 flex justify-center">
 				<button on:click={() => guessName(u.profile.real_name)}
 					><Photo src={u.profile.image_original} alt={u.profile.real_name} /></button
 				>
