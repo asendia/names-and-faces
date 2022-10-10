@@ -33,14 +33,20 @@
 	on:change={(e) => (dataStr = e.currentTarget.value)}>{dataStr}</textarea
 >
 <div class="h-2" />
-<Button
-	type="secondary"
-	on:click={() => {
-		removeData();
-		dataStr = '';
-	}}>Clear</Button
->
-<Button on:click={handleSave}>Save</Button>
+<div class="flex justify-between">
+	<a href="../"><Button type="secondary">Back</Button></a>
+	<div class="flex">
+		<Button
+			type="secondary"
+			on:click={() => {
+				removeData();
+				dataStr = '';
+			}}>Clear</Button
+		>
+		<div class="w-2" />
+		<Button on:click={handleSave}>Save</Button>
+	</div>
+</div>
 
 <p class="mt-4">Here you can use your own data from your Slack organization(s). How:</p>
 <ol class="pl-5 my-2 space-y-1 list-decimal list-inside">

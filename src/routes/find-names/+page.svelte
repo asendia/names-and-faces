@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Button from '$lib/Button.svelte';
 	import Photo from '$lib/Photo.svelte';
-	import type { SlackProfile } from '$lib/profile';
+	import { isSlackProfileEqual, type SlackProfile } from '$lib/profile';
 	import { loadData } from '$lib/storage';
 	import { onMount } from 'svelte';
 	let data: Array<{ profile: SlackProfile }> = [];
@@ -21,22 +21,31 @@
 	let filter = '';
 	let filtered: typeof data = [];
 
-	function startGame() {
+	function continueGame() {
 		filter = '';
 		filtered = data;
-		const randomID = Math.floor(Math.random() * biasedData.length);
 		correct = undefined;
+		if (biasedData.length === 0) {
+			started = false;
+			return;
+		}
+		const randomID = Math.floor(Math.random() * biasedData.length);
 		userProfile = biasedData[randomID].profile;
 		started = true;
 	}
 
-	function guessName(name: string) {
-		correct = userProfile.real_name === name;
+	function guessName(profile: SlackProfile) {
+		if (correct !== undefined) {
+			continueGame();
+			return;
+		}
+		correct = isSlackProfileEqual(userProfile, profile);
 		if (correct) {
-			const id = biasedData.findIndex((u) => u.profile.real_name === name);
+			const id = biasedData.findIndex((u) => isSlackProfileEqual(u.profile, profile));
 			biasedData.splice(id, 1);
 			biasedData = biasedData;
 		}
+		window.scrollTo({ top: 0, behavior: 'smooth' });
 	}
 </script>
 
@@ -45,9 +54,10 @@
 	<meta name="description" content="Find names based on photos" />
 </svelte:head>
 
+<a href="../"><Button type="secondary">Back</Button></a>
 {#if !started}
-	<div class="flex items-center justify-center h-[80vh]">
-		<Button on:click={startGame}>Start Find Names</Button>
+	<div class="flex items-center justify-center h-[70vh] md:h-[80vh]">
+		<Button on:click={continueGame}>Find Names</Button>
 	</div>
 {/if}
 
@@ -97,11 +107,11 @@
 					on:keyup={(e) => {
 						if (e.key === 'Enter') {
 							if (correct !== undefined) {
-								startGame();
+								continueGame();
 								return;
 							}
 							if (filtered.length !== 1) return;
-							guessName(filtered[0].profile.real_name);
+							guessName(filtered[0].profile);
 							return;
 						}
 						filter = e.currentTarget.value.toLowerCase();
@@ -114,14 +124,14 @@
 					}}
 				/>
 				<div class="w-2" />
-				<Button on:click={startGame}>Next</Button>
+				<Button on:click={continueGame}>Next</Button>
 			</div>
 		</div>
 	</div>
-	<div class="flex flex-wrap justify-around max-w-5xl mx-auto mt-3">
+	<div class="flex flex-wrap justify-center max-w-5xl mx-auto mt-3">
 		{#each filtered as u}
 			<div class="m-2">
-				<Button on:click={() => guessName(u.profile.real_name)} type="secondary"
+				<Button on:click={() => guessName(u.profile)} type="secondary"
 					>{u.profile.real_name}{u.profile.display_name
 						? ` (${u.profile.display_name})`
 						: ''}</Button
