@@ -18,13 +18,13 @@
 <h1 class="text-center font-medium leading-tight text-4xl sm:text-5xl my-4 text-blue-500">
 	Names and Faces
 </h1>
-<p class="md:text-center mb-4 md:mb-12">
+<p class="text-center mb-4 md:mb-12">
 	How to memorize names and faces: <a
 		class="text-blue-500 underline"
 		target="_blank"
 		href="https://www.wikihow.com/Memorize-Names-and-Faces">WikiHow</a
 	><br />
-	Or you can train yourself to memorize names and faces:
+	Or you can train yourself to memorize<br />🔤 🈳️ ⛎ and 😃👳👲
 </p>
 <div class="flex flex-col md:flex-row justify-center items-center mb-4 md:mb-12">
 	<a href="./find-names" class="block w-[200px]"><Button fullWidth>Find Names</Button></a>
