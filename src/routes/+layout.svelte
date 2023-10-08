@@ -7,7 +7,7 @@
 </div>
 
 <footer class="p-3 h-[10vh] flex flex-col items-center justify-center">
-	2022
+	2022-2023
 	<br />
 	<div class="text-gray-500 text-sm">
 		sejiwo -
