@@ -4,9 +4,10 @@
 	import { loadData } from '$lib/storage';
 	import { isSlackProfileEqual, type SlackProfile } from '$lib/profile';
 	import { onMount } from 'svelte';
+	import { shuffle } from './shuffle';
 	let data: Array<{ profile: SlackProfile }> = [];
 	onMount(() => {
-		data = loadData();
+		data = shuffle(loadData());
 		data.forEach((u) => {
 			for (let i = 0; i < 1; i++) {
 				biasedData.push(u);
